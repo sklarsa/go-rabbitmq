@@ -21,9 +21,9 @@ type Rate struct {
 }
 
 type QueueTotals struct {
-	Messages               int `"json:messages"`
-	MessagesReady          int `"json:messages_ready"`
-	MessagesUnacknowledged int `"json:messages_unacknowledged"`
+	Messages               int `json:"messages"`
+	MessagesReady          int `json:"messages_ready"`
+	MessagesUnacknowledged int `json:"messages_unacknowledged"`
 }
 
 type ObjectTotals struct {
@@ -35,17 +35,17 @@ type ObjectTotals struct {
 }
 
 type MessageStats struct {
-	Publish      int `"json:publish"`
-	PublishIn    int `"json:publish_in"`
-	PublishOut   int `"json:publish_out"`
-	Confirm      int `"json:confirm"`
-	Deliver      int `"json:deliver"`
-	DeliverNoAck int `"json:deliver_noack"`
-	Get          int `"json:get"`
-	GetNoAck     int `"json:get_noack"`
-	DeliverGet   int `"json:deliver_get"`
-	Redeliver    int `"json:redeliver"`
-	Return       int `"json:return"`
+	Publish      int `json:"publish"`
+	PublishIn    int `json:"publish_in"`
+	PublishOut   int `json:"publish_out"`
+	Confirm      int `json:"confirm"`
+	Deliver      int `json:"deliver"`
+	DeliverNoAck int `json:"deliver_noack"`
+	Get          int `json:"get"`
+	GetNoAck     int `json:"get_noack"`
+	DeliverGet   int `json:"deliver_get"`
+	Redeliver    int `json:"redeliver"`
+	Return       int `json:"return"`
 }
 
 type GenericObject struct {
