@@ -29,7 +29,7 @@ This is just a small side-project for me (and my first real foray into the world
 |/api/consumers | GET
 |/api/consumers/vhost | GET
 |~~/api/exchanges~~ | ~~GET~~
-|~~/api/exchanges/vhost | ~~GET~~
+|~~/api/exchanges/vhost~~ | ~~GET~~
 |/api/exchanges/vhost/name | GET, PUT, DELETE
 |/api/exchanges/vhost/name/bindings/source | GET
 |/api/exchanges/vhost/name/bindings/destination | GET
