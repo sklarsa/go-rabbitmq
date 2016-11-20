@@ -8,6 +8,7 @@ Included will be a full-featured API written in (hopefully) idiomatic Golang, as
 This is just a small side-project for me (and my first real foray into the world of Golang), but if anyone is interested in helping out, pull requests are more than welcome!
 
 [Link to builds](https://travis-ci.org/sklarsa/go-rabbitmq)
+[Link to go report card](https://goreportcard.com/report/github.com/sklarsa/go-rabbitmq)
 
 ## API Methods Implemented:
 | Endpoint        | Methods           |
