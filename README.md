@@ -1,5 +1,5 @@
 # go-rabbitmq
-![Build Status](https://travis-ci.org/sklarsa/go-rabbitmq.svg?branch=master)
+![Build Status](https://travis-ci.org/sklarsa/go-rabbitmq.svg?branch=master)  ![Go Report Card](https://goreportcard.com/badge/github.com/sklarsa/go-rabbitmq)
 #### An API Client written in Go for RabbitMQ's built-in REST API
 This is an API client used to communicate with w remote RabbitMQ instance.  If you are just trying to query a node for information, or perhaps manipulate its behavior from a remote machine (without rabbitmqctl or another tool installed), this is the tool for you!
 
