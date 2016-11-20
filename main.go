@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"path"
@@ -12,6 +14,12 @@ var (
 	username = "guest"
 	password = "guest"
 )
+
+type QueueTotals struct {
+	Messages               int `"messages"`
+	MessagesReady          int `"messages_ready"`
+	MessagesUnacknowledged int `"messages_unacknowledged"`
+}
 
 type ObjectTotals struct {
 	Consumers   int `json:"consumers"`
@@ -35,34 +43,75 @@ type MessageStats struct {
 	Return       int `"json:return"`
 }
 
+type ExchangeType struct {
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Enabled     bool   `json:"enabled"`
+}
+
+type Listener struct {
+	Node      string `json:"node"`
+	Protocol  string `json:"protocol"`
+	IPAddress string `json:"ip_address"`
+	Port      int    `json:"port"`
+}
+
+type Context struct {
+	Node        string `json:"node"`
+	Description string `json:"description"`
+	Path        string `json:"path"`
+	Port        string `json:"port"`
+}
+
 type Overview struct {
-	ClusterName       string       `json:"cluster_name"`
-	Contexts          []string     `json:"contexts"`
-	ErlangFullVersion []string     `json:"erlang_full_version"`
-	ErlangVersion     string       `json:"erlang_version"`
-	ExchangeTypes     string       `json:"exchange_types"`
-	Listeners         []string     `json:"listeners"`
-	ManagementVersion string       `json:"management_version"`
-	MessageStats      MessageStats `json:"message_stats"`
-	Node              string       `json:"node"`
-	ObjectTotals
+	ClusterName            string         `json:"cluster_name"`
+	Contexts               []Context      `json:"contexts"`
+	ErlangFullVersion      string         `json:"erlang_full_version"`
+	ErlangVersion          string         `json:"erlang_version"`
+	ExchangeTypes          []ExchangeType `json:"exchange_types"`
+	Listeners              []Listener     `json:"listeners"`
+	ManagementVersion      string         `json:"management_version"`
+	MessageStats           MessageStats   `json:"message_stats"`
+	Node                   string         `json:"node"`
+	ObjectTotals           ObjectTotals   `json:"object_totals"`
+	QueueTotals            QueueTotals    `json:"queue_totals"`
+	RabbitMQVersion        string         `json:"rabbitmq_version"`
+	RatesMode              string         `json:"rates_modes"`
+	StatisticsDbEventQueue int            `json:"statistics_db_event_queue"`
+	StatisticsDbNode       string         `json:"statistics_db_node"`
 }
 
 func makeRequest(method string, endpoint string) *http.Response {
 	client := &http.Client{}
 
-	url := fmt.Sprintf("http://%s/api/", path.Join(mgmtUrl, endpoint))
+	url := fmt.Sprintf("http://%s", path.Join(mgmtUrl, "api", endpoint))
 	req, _ := http.NewRequest(method, url, nil)
 	req.SetBasicAuth(username, password)
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Panic(err)
+		log.Panic(err.Error)
 	}
+
+	log.Printf("Request: %s (Status: %d)\n", url, resp.StatusCode)
+
 	return resp
 }
 
 func main() {
 
-	resp := makeRequest("api", "GET")
-	log.Println(resp)
+	r := makeRequest("GET", "overview")
+
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	overview := Overview{}
+	err = json.Unmarshal(body, &overview)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(overview)
+
 }
