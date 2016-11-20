@@ -84,3 +84,18 @@ func (c Client) GetNode(node string) (Node, error) {
 	err := processResponse(r, n)
 	return n, err
 }
+
+func (c Client) GetExchanges() ([]Exchange, error) {
+	r := c.makeRequest("GET", "exchanges")
+	var e []Exchange
+	err := processResponse(r, &e)
+	return e, err
+}
+
+func (c Client) GetExchangesOnVhost(vhost string) ([]Exchange, error) {
+	vhostStr := escapeVhost(vhost)
+	r := c.makeRequest("GET", fmt.Sprintf("exchanges/%s", vhostStr))
+	var e []Exchange
+	err := processResponse(r, &e)
+	return e, err
+}

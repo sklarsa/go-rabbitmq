@@ -23,4 +23,10 @@ func main() {
 	node, _ := c.GetNode("rabbit@localhost")
 	fmt.Println(node)
 
+	exchanges, _ := c.GetExchanges()
+	fmt.Println(exchanges)
+
+	exchangesOnVhost, _ := c.GetExchangesOnVhost("/")
+	fmt.Println(exchangesOnVhost)
+
 }
