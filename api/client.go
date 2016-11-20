@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -37,6 +38,10 @@ func processResponse(response *http.Response, target interface{}) error {
 		return err
 	}
 
+	if response.StatusCode < 200 || response.StatusCode > 299 {
+		return errors.New(fmt.Sprintf("Bad Request: %s (Status Code %d). %s", response.Request.URL, response.StatusCode, body))
+	}
+
 	err = json.Unmarshal(body, target)
 	if err != nil {
 		return err
@@ -46,9 +51,9 @@ func processResponse(response *http.Response, target interface{}) error {
 
 }
 
-func (c Client) GetOverview() Overview {
+func (c Client) GetOverview() (Overview, error) {
 	r := c.makeRequest("GET", "overview")
 	o := Overview{}
-	processResponse(r, &o)
-	return o
+	err := processResponse(r, &o)
+	return o, err
 }

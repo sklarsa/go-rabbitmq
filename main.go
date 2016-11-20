@@ -14,7 +14,7 @@ var (
 func main() {
 
 	c := api.Client{MgmtUrl: mgmtUrl, Username: username, Password: password}
-	overview := c.GetOverview()
+	overview, _ := c.GetOverview()
 	fmt.Println(overview)
 
 }
