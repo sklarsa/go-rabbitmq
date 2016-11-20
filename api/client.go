@@ -42,7 +42,7 @@ func processResponse(response *http.Response, target interface{}) error {
 		return errors.New(fmt.Sprintf("Bad Request: %s (Status Code %d). %s", response.Request.URL, response.StatusCode, body))
 	}
 
-	err = json.Unmarshal(body, target)
+	err = json.Unmarshal(body, &target)
 	if err != nil {
 		return err
 	}
@@ -67,4 +67,11 @@ func (c Client) GetClusterName() (string, error) {
 	err := processResponse(r, &res)
 	return res.Name, err
 
+}
+
+func (c Client) GetNodes() ([]Node, error) {
+	r := c.makeRequest("GET", "nodes")
+	var n []Node
+	err := processResponse(r, &n)
+	return n, err
 }

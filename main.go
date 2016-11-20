@@ -17,4 +17,7 @@ func main() {
 	overview, _ := c.GetOverview()
 	fmt.Println(overview)
 
+	r, _ := c.GetNodes()
+	fmt.Println(r)
+
 }
