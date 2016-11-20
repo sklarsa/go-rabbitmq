@@ -33,6 +33,22 @@ func (c Client) makeRequest(method string, endpoint string) *http.Response {
 	return resp
 }
 
+func (c Client) get(endpoint string) *http.Response {
+	return c.makeRequest("GET", endpoint)
+}
+
+func (c Client) delete(endpoint string) *http.Response {
+	return c.makeRequest("DELETE", endpoint)
+}
+
+func (c Client) put(endpoint string, data interface{}) *http.Response {
+	return c.makeRequest("PUT", endpoint)
+}
+
+func (c Client) post(endpoint string, data interface{}) *http.Response {
+	return c.makeRequest("POST", endpoint)
+}
+
 func processResponse(response *http.Response, target interface{}) error {
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
@@ -53,14 +69,14 @@ func processResponse(response *http.Response, target interface{}) error {
 }
 
 func (c Client) GetOverview() (Overview, error) {
-	r := c.makeRequest("GET", "overview")
+	r := c.get("overview")
 	o := Overview{}
 	err := processResponse(r, &o)
 	return o, err
 }
 
 func (c Client) GetClusterName() (string, error) {
-	r := c.makeRequest("GET", "cluster-name")
+	r := c.get("cluster-name")
 	type result struct {
 		Name string `json:"name"`
 	}
@@ -71,7 +87,7 @@ func (c Client) GetClusterName() (string, error) {
 }
 
 func (c Client) GetNodes() ([]Node, error) {
-	r := c.makeRequest("GET", "nodes")
+	r := c.get("nodes")
 	var n []Node
 	err := processResponse(r, &n)
 	return n, err
@@ -79,14 +95,14 @@ func (c Client) GetNodes() ([]Node, error) {
 
 func (c Client) GetNode(node string) (Node, error) {
 	nodeStr := url.QueryEscape(node)
-	r := c.makeRequest("GET", fmt.Sprintf("nodes/%s", nodeStr))
+	r := c.get(fmt.Sprintf("nodes/%s", nodeStr))
 	n := Node{}
 	err := processResponse(r, &n)
 	return n, err
 }
 
 func (c Client) GetExchanges() ([]Exchange, error) {
-	r := c.makeRequest("GET", "exchanges")
+	r := c.get("exchanges")
 	var e []Exchange
 	err := processResponse(r, &e)
 	return e, err
