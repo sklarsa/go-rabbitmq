@@ -97,21 +97,29 @@ func makeRequest(method string, endpoint string) *http.Response {
 	return resp
 }
 
+func processResponse(response *http.Response, target interface{}) error {
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(body, &target)
+	if err != nil {
+		return err
+	}
+
+	return nil
+
+}
+
 func main() {
 
 	r := makeRequest("GET", "overview")
-
-	body, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	overview := Overview{}
-	err = json.Unmarshal(body, &overview)
+	err := processResponse(r, &overview)
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	fmt.Println(overview)
 
 }
