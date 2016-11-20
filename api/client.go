@@ -81,7 +81,7 @@ func (c Client) GetNode(node string) (Node, error) {
 	nodeStr := url.QueryEscape(node)
 	r := c.makeRequest("GET", fmt.Sprintf("nodes/%s", nodeStr))
 	n := Node{}
-	err := processResponse(r, n)
+	err := processResponse(r, &n)
 	return n, err
 }
 
