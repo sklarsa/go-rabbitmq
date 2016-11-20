@@ -1,8 +1,8 @@
 package main
 
 import (
-	"bitbucket.org/sklarsa/go-rabbitmq/api"
 	"fmt"
+	"github.com/sklarsa/go-rabbitmq/api"
 )
 
 var (
