@@ -13,7 +13,7 @@ This is just a small side-project for me (and my first real foray into the world
 |~~/api/overview~~ | ~~GET~~ |
 |/api/cluster-name | ~~GET~~, PUT |
 |/api/nodes | ~~GET~~
-|/api/nodes/name | GET
+|/api/nodes/name | ~~GET~~
 |/api/extensions | GET
 |/api/definitions | GET, POST
 |/api/definitions/vhost | GET, POST

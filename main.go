@@ -17,7 +17,10 @@ func main() {
 	overview, _ := c.GetOverview()
 	fmt.Println(overview)
 
-	r, _ := c.GetNodes()
-	fmt.Println(r)
+	nodes, _ := c.GetNodes()
+	fmt.Println(nodes)
+
+	node, _ := c.GetNode("rabbit@localhost")
+	fmt.Println(node)
 
 }

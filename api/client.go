@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"path"
 )
 
@@ -73,5 +74,13 @@ func (c Client) GetNodes() ([]Node, error) {
 	r := c.makeRequest("GET", "nodes")
 	var n []Node
 	err := processResponse(r, &n)
+	return n, err
+}
+
+func (c Client) GetNode(node string) (Node, error) {
+	nodeStr := url.QueryEscape(node)
+	r := c.makeRequest("GET", fmt.Sprintf("nodes/%s", nodeStr))
+	n := Node{}
+	err := processResponse(r, n)
 	return n, err
 }
