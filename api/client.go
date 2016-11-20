@@ -25,7 +25,7 @@ func (c Client) makeRequest(method string, endpoint string) *http.Response {
 	req.SetBasicAuth(c.Username, c.Password)
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Panic(err.Error)
+		log.Panic(err)
 	}
 
 	log.Printf("Request: %s (Status: %d)\n", url, resp.StatusCode)
