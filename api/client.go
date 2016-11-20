@@ -57,3 +57,14 @@ func (c Client) GetOverview() (Overview, error) {
 	err := processResponse(r, &o)
 	return o, err
 }
+
+func (c Client) GetClusterName() (string, error) {
+	r := c.makeRequest("GET", "cluster-name")
+	type result struct {
+		Name string `json:"name"`
+	}
+	res := result{}
+	err := processResponse(r, &res)
+	return res.Name, err
+
+}
