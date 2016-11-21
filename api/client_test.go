@@ -1,6 +1,8 @@
 package api
 
 import (
+	"github.com/streadway/amqp"
+	"os"
 	"reflect"
 	"testing"
 )
@@ -10,6 +12,20 @@ var (
 	username = "guest"
 	password = "guest"
 )
+
+func TestMain(m *testing.M) {
+	// Set up a test rabbitmq connection
+
+	conn, _ := amqp.Dial(os.Getenv("AMQP_URL"))
+	defer conn.Close()
+
+	channel, _ := conn.Channel()
+	channel.ExchangeDeclare("test_exchange", "topic", true, false, false, false, amqp.Table{})
+	channel.QueueDeclare("test_queue", true, false, false, false, amqp.Table{})
+	channel.QueueBind("test_queue", "#", "test_exchange", false, amqp.Table{})
+
+	os.Exit(m.Run())
+}
 
 func TestClient(t *testing.T) {
 

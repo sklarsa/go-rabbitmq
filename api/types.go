@@ -1,13 +1,13 @@
 package api
 
 type Exchange struct {
-	Name       string            `json:"name"`
-	Vhost      string            `json:"vhost"`
-	Type       string            `json:"type"`
-	Durable    bool              `json:"durable"`
-	AutoDelete bool              `json:"auto_delete"`
-	Internal   bool              `json:"internal"`
-	Arguments  map[string]string `json:"arguments"`
+	Name       string                 `json:"name"`
+	Vhost      string                 `json:"vhost"`
+	Type       string                 `json:"type"`
+	Durable    bool                   `json:"durable"`
+	AutoDelete bool                   `json:"auto_delete"`
+	Internal   bool                   `json:"internal"`
+	Arguments  map[string]interface{} `json:"arguments"`
 }
 
 type ErlangApplication struct {

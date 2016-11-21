@@ -8,11 +8,14 @@ BUILD_TIME=`date +%FT%T%z`
 # Setup the -ldflags option for go build here, interpolate the variable values
 LDFLAGS=-ldflags "-X github.com/sklarsa/go-rabbitmq/core.Version=${VERSION} -X github.com/sklarsa/go-rabbitmq/core.BuildTime=${BUILD_TIME}"
 
-test_api:
-	go test ./api
-
 build:
 	go build ${LDFLAGS} -o ${BINARY} ./
 
 all: build test_api
 	go build ${LDFLAGS} -o ${BINARY} ./
+
+get_test_deps:
+	go get github.com/streadway/amqp
+
+test_api: get_test_deps
+	go test ./api
