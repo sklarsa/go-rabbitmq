@@ -110,8 +110,45 @@ func (c Client) GetExchanges() ([]Exchange, error) {
 
 func (c Client) GetExchangesOnVhost(vhost string) ([]Exchange, error) {
 	vhostStr := escapeVhost(vhost)
-	r := c.makeRequest("GET", fmt.Sprintf("exchanges/%s", vhostStr))
+	r := c.get(fmt.Sprintf("exchanges/%s", vhostStr))
 	var e []Exchange
 	err := processResponse(r, &e)
 	return e, err
+}
+
+func (c Client) GetBindings() ([]Binding, error) {
+	r := c.get("bindings")
+	var b []Binding
+	err := processResponse(r, &b)
+	return b, err
+}
+
+func (c Client) GetBindingsOnVhost(vhost string) ([]Binding, error) {
+	vhostStr := escapeVhost(vhost)
+	r := c.get(fmt.Sprintf("bindings/%s", vhostStr))
+	var b []Binding
+	err := processResponse(r, &b)
+	return b, err
+}
+
+func (c Client) GetVhosts() ([]Vhost, error) {
+	r := c.get("vhosts")
+	var v []Vhost
+	err := processResponse(r, &v)
+	return v, err
+}
+
+func (c Client) GetVhostPermissions(vhost string) ([]Permission, error) {
+	vhostStr := escapeVhost(vhost)
+	r := c.get(fmt.Sprintf("vhosts/%s/permissions", vhostStr))
+	var p []Permission
+	err := processResponse(r, &p)
+	return p, err
+}
+
+func (c Client) GetUsers() ([]User, error) {
+	r := c.get("users")
+	var u []User
+	err := processResponse(r, &u)
+	return u, err
 }

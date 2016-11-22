@@ -10,6 +10,31 @@ type Exchange struct {
 	Arguments  map[string]interface{} `json:"arguments"`
 }
 
+type Binding struct {
+	Source          string                 `json:"source"`
+	Vhost           string                 `json:"vhost"`
+	Destination     string                 `json:"destination"`
+	DestinationType string                 `json:"destination_type"`
+	RoutingKey      string                 `json:"routing_key"`
+	Arguments       map[string]interface{} `json:"arguments"`
+	PropertiesKey   string                 `json:"properties_key"`
+}
+
+type Vhost struct {
+	SendOct                       int    `json:"send_oct"`
+	SendOctDetails                Rate   `json:"send_oct_details"`
+	RecvOct                       int    `json:"recv_oct"`
+	RecvOctDetails                Rate   `json:"recv_oct_details"`
+	Messages                      int    `json:"messages"`
+	MessagesDetails               Rate   `json:"messages_details"`
+	MessagesReady                 int    `json:"messages_ready"`
+	MessagesReadyDetails          Rate   `json:"messages_ready_details"`
+	MessagesUnacknowledged        int    `json:"messages_unacknowledged"`
+	MessagesUnacknowledgedDetails Rate   `json:"messages_unacknowledged_details"`
+	Name                          string `json:"name"`
+	Tracing                       bool   `json:"tracing"`
+}
+
 type ErlangApplication struct {
 	Description string `json:"description"`
 	Name        string `json:"name"`
@@ -170,4 +195,19 @@ type Node struct {
 	SocketsUsedDetails                    Rate                `json:"sockets_used_details"`
 	Type                                  string              `json:"type"`
 	Uptime                                int                 `json:"uptime"`
+}
+
+type Permission struct {
+	Vhost     string `json:"vhost"`
+	User      string `json:"user"`
+	Configure string `json:"configure"`
+	Write     string `json:"write"`
+	Read      string `json:"read"`
+}
+
+type User struct {
+	Name             string `json:"name"`
+	PasswordHash     string `json:"password_hash"`
+	HashingAlgorithm string `json:"hashing_algorithm"`
+	Tags             string `json:"tags"`
 }

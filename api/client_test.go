@@ -55,4 +55,29 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/exchanges/vhost on default vhost has no values")
 	}
 
+	bindings, _ := c.GetBindings()
+	if len(bindings) == 0 {
+		t.Errorf("Result from api/bindings has no values")
+	}
+
+	bindings, _ = c.GetBindingsOnVhost("/")
+	if len(bindings) == 0 {
+		t.Errorf("Result from api/bindings/vhost has no values")
+	}
+
+	vhosts, _ := c.GetVhosts()
+	if len(vhosts) == 0 {
+		t.Error("Result from api/vhosts has no values")
+	}
+
+	permissions, _ := c.GetVhostPermissions("/")
+	if len(permissions) == 0 {
+		t.Error("Result from api/vhost/name/permissions has no values")
+	}
+
+	users, _ := c.GetUsers()
+	if len(users) == 0 {
+		t.Error("Result from api/users has no values")
+	}
+
 }

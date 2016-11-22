@@ -43,28 +43,28 @@ This is just a small side-project for me (and my first real foray into the world
 |/api/queues/vhost/name/contents | DELETE
 |/api/queues/vhost/name/actions | POST
 |/api/queues/vhost/name/get | POST
-|/api/bindings | GET
-|/api/bindings/vhost | GET
+|~~/api/bindings~~ | ~~GET~~
+|~~/api/bindings/vhost~~ | ~~GET~~
 |/api/bindings/vhost/e/exchange/q/queue | GET, POST
 |/api/bindings/vhost/e/exchange/q/queue/props | GET, DELETE
 |/api/bindings/vhost/e/source/e/destination | GET, POST
 |/api/bindings/vhost/e/source/e/destination/props | GET, DELETE
-|/api/vhosts | GET
+|~~/api/vhosts~~ | ~~GET~~
 |/api/vhosts/name | GET, PUT, DELETE
 |/api/vhosts/name/permissions | GET
-|/api/users | GET
+|~~/api/users~~ | ~~GET~~
 |/api/users/name | GET, PUT, DELETE
-/api/users/user/permissions | GET
-/api/whoami | GET
-/api/permissions | GET
-/api/permissions/vhost/user | GET, PUT, DELETE
-/api/parameters | GET
-/api/parameters/component | GET
-/api/parameters/component/vhost | GET
-/api/parameters/component/vhost/name | GET, PUT, DELETE
-/api/policies | GET
-/api/policies/vhost | GET
-/api/policies/vhost/name | GET, PUT, DELETE
-/api/aliveness-test/vhost | GET
-/api/healthchecks/node | GET
-/api/healthchecks/node/node | GET
+|/api/users/user/permissions | GET
+|/api/whoami | GET
+|~~/api/permissions~~ | ~~GET~~
+|/api/permissions/vhost/user | GET, PUT, DELETE
+|/api/parameters | GET
+|/api/parameters/component | GET
+|/api/parameters/component/vhost | GET
+|/api/parameters/component/vhost/name | GET, PUT, DELETE
+|/api/policies | GET
+|/api/policies/vhost | GET
+|/api/policies/vhost/name | GET, PUT, DELETE
+|/api/aliveness-test/vhost | GET
+|/api/healthchecks/node | GET
+|/api/healthchecks/node/node | GET
