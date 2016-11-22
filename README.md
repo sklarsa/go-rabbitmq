@@ -65,6 +65,6 @@ This is just a small side-project for me (and my first real foray into the world
 |/api/policies | GET
 |/api/policies/vhost | GET
 |/api/policies/vhost/name | GET, PUT, DELETE
-|/api/aliveness-test/vhost | GET
-|/api/healthchecks/node | GET
-|/api/healthchecks/node/node | GET
+|~~/api/aliveness-test/vhost~~ | ~~GET~
+|~~/api/healthchecks/node~~ | ~~GET~~
+|~~/api/healthchecks/node/node~~ | ~~GET~~

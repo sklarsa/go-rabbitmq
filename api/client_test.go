@@ -80,4 +80,20 @@ func TestClient(t *testing.T) {
 		t.Error("Result from api/users has no values")
 	}
 
+	status, _ := c.GetAlivenessTestForVhost("/")
+	if reflect.DeepEqual(status, Status{}) {
+		t.Error("Result from api/aliveness-test/vhost is nil")
+	}
+
+	status, _ = c.GetHealthcheckForCurrentNode()
+	if reflect.DeepEqual(status, Status{}) {
+		t.Error("Result from api/healthchecks/node is nil")
+	}
+
+	/* TODO: Get node name!
+	status, _ = c.GetHealthchecksForNode("rabbit@localhost")
+	if reflect.DeepEqual(status, Status{}) {
+		t.Error("Result from api/healthchecks/node/node is nil")
+	}
+	*/
 }

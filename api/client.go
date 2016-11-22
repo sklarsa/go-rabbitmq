@@ -152,3 +152,26 @@ func (c Client) GetUsers() ([]User, error) {
 	err := processResponse(r, &u)
 	return u, err
 }
+
+func (c Client) GetAlivenessTestForVhost(vhost string) (Status, error) {
+	vhostStr := escapeVhost(vhost)
+	r := c.get(fmt.Sprintf("aliveness-test/%s", vhostStr))
+	s := Status{}
+	err := processResponse(r, &s)
+	return s, err
+}
+
+func (c Client) GetHealthcheckForCurrentNode() (Status, error) {
+	r := c.get("healthchecks/node")
+	s := Status{}
+	err := processResponse(r, &s)
+	return s, err
+}
+
+func (c Client) GetHealthchecksForNode(node string) (Status, error) {
+	nodeStr := url.QueryEscape(node)
+	r := c.get(fmt.Sprintf("healthchecks/node/%s", nodeStr))
+	s := Status{}
+	err := processResponse(r, &s)
+	return s, err
+}

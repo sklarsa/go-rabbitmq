@@ -211,3 +211,8 @@ type User struct {
 	HashingAlgorithm string `json:"hashing_algorithm"`
 	Tags             string `json:"tags"`
 }
+
+type Status struct {
+	Status string `json:"status"`
+	Reason string `json:"reason"`
+}
