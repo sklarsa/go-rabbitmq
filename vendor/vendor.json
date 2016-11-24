@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "Df44BgN9UTZonCQxmg04TL6BL28=",
+			"path": "github.com/streadway/amqp",
+			"revision": "ae39942252d8933c29a02b423d93808889d9f09c",
+			"revisionTime": "2016-11-17T22:38:28Z"
+		}
+	],
+	"rootPath": "github.com/sklarsa/go-rabbitmq"
+}
