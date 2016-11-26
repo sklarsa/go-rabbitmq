@@ -50,7 +50,7 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/overview is nil")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	extensions, err := c.GetExtensions()
@@ -58,7 +58,7 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/extensions has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	nodes, err := c.GetNodes()
@@ -66,7 +66,7 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/nodes has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	node, err := c.GetNode("rabbit@localhost")
@@ -74,7 +74,7 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/node/rabbit@localhost is nil")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	connections, err := c.GetConnections()
@@ -82,7 +82,7 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/connections has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	connections, err = c.GetConnectionsOnVhost("/")
@@ -90,7 +90,7 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/vhosts/vhost/connections has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	channels, err := c.GetChannels()
@@ -98,7 +98,7 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/channels has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	channels, err = c.GetChannelsOnVhost("/")
@@ -106,7 +106,7 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/vhosts/vhost/channels has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	channels, err = c.GetChannelsOnConnection(connections[0].Name)
@@ -114,7 +114,7 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/connections/connection/channels has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	exchanges, err := c.GetExchanges()
@@ -122,7 +122,7 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/exchanges has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	exchangesOnVhost, err := c.GetExchangesOnVhost("/")
@@ -130,7 +130,7 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/exchanges/vhost on default vhost has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	bindings, err := c.GetBindings()
@@ -138,7 +138,7 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/bindings has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	bindings, err = c.GetBindingsOnVhost("/")
@@ -146,7 +146,7 @@ func TestClient(t *testing.T) {
 		t.Errorf("Result from api/bindings/vhost has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	vhosts, err := c.GetVhosts()
@@ -154,7 +154,7 @@ func TestClient(t *testing.T) {
 		t.Error("Result from api/vhosts has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	permissions, err := c.GetVhostPermissions("/")
@@ -162,7 +162,7 @@ func TestClient(t *testing.T) {
 		t.Error("Result from api/vhost/name/permissions has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	users, err := c.GetUsers()
@@ -170,7 +170,7 @@ func TestClient(t *testing.T) {
 		t.Error("Result from api/users has no values")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	status, err := c.GetAlivenessTestForVhost("/")
@@ -178,7 +178,7 @@ func TestClient(t *testing.T) {
 		t.Error("Result from api/aliveness-test/vhost is nil")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	status, err = c.GetHealthcheckForCurrentNode()
@@ -186,7 +186,7 @@ func TestClient(t *testing.T) {
 		t.Error("Result from api/healthchecks/node is nil")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 
 	status, err = c.GetHealthchecksForNode("rabbit@localhost")
@@ -194,6 +194,6 @@ func TestClient(t *testing.T) {
 		t.Error("Result from api/healthchecks/node/node is nil")
 	}
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 }
