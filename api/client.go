@@ -55,6 +55,8 @@ func processResponse(response *http.Response, target interface{}) error {
 		return err
 	}
 
+	log.Println(string(body))
+
 	if response.StatusCode < 200 || response.StatusCode > 299 {
 		return errors.New(fmt.Sprintf("Bad Request: %s (Status Code %d). %s", response.Request.URL, response.StatusCode, body))
 	}
