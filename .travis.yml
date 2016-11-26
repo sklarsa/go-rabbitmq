@@ -5,10 +5,14 @@ go:
   - 1.7.1
   - master
 
+install:
+  - sudo rabbitmq-plugins enable rabbitmq_management
+  - sudo service rabbitmq-server restart
+
 services:
   - rabbitmq
 
 env:
- - AMQP_URL=amqp://guest:guest@127.0.0.1:5672/ GOMAXPROCS=2
+  - AMQP_URL=amqp://guest:guest@127.0.0.1:5672/ GOMAXPROCS=2
 
 script: make all
