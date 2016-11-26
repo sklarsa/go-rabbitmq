@@ -14,8 +14,5 @@ build:
 all: build test_api
 	go build ${LDFLAGS} -o ${BINARY} ./
 
-get_test_deps:
-	go get github.com/streadway/amqp
-
-test_api: get_test_deps
+test_api:
 	go test ./api

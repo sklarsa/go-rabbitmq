@@ -216,3 +216,89 @@ type Status struct {
 	Status string `json:"status"`
 	Reason string `json:"reason"`
 }
+
+type ClientProperties struct {
+	Product        string       `json:"product"`
+	ProductVersion string       `json:"product_version"`
+	Capabilities   Capabilities `json:"capabilities"`
+}
+
+type Capabilities struct {
+	ConnectionBlocked          bool `json:"connection.blocked"`
+	AuthenticationFailureClose bool `json:"authentication_failure_close"`
+	ConsumerCancelNotify       bool `json:"consumer_cancel_notify"`
+}
+type GarbageCollection struct {
+	MaxHeapSize     int `json:"max_heap_size"`
+	MinBinVheapSize int `json:"min_bin_vheap_size"`
+	MinHeapSize     int `json:"min_heap_size"`
+	FullsweepAfter  int `json:"fullsweep_after"`
+	MinorGcs        int `json:"minor_gcs"`
+}
+
+type Connection struct {
+	ConnectedAt       int64             `json:"connected_at"`
+	ChannelMax        int               `json:"channel_max"`
+	FrameMax          int               `json:"frame_max"`
+	Timeout           int               `json:"timeout"`
+	Vhost             string            `json:"vhost"`
+	User              string            `json:"user"`
+	Protocol          string            `json:"protocol"`
+	SslHash           interface{}       `json:"ssl_hash"`
+	SslCipher         interface{}       `json:"ssl_cipher"`
+	SslKeyExchange    interface{}       `json:"ssl_key_exchange"`
+	SslProtocol       interface{}       `json:"ssl_protocol"`
+	AuthMechanism     string            `json:"auth_mechanism"`
+	PeerCertValidity  interface{}       `json:"peer_cert_validity"`
+	PeerCertIssuer    interface{}       `json:"peer_cert_issuer"`
+	PeerCertSubject   interface{}       `json:"peer_cert_subject"`
+	Ssl               bool              `json:"ssl"`
+	PeerHost          string            `json:"peer_host"`
+	Host              string            `json:"host"`
+	PeerPort          int               `json:"peer_port"`
+	Port              int               `json:"port"`
+	Name              string            `json:"name"`
+	Node              string            `json:"node"`
+	Type              string            `json:"type"`
+	GarbageCollection GarbageCollection `json:"garbage_collection"`
+	Reductions        int               `json:"reductions"`
+	Channels          int               `json:"channels"`
+	State             string            `json:"state"`
+	SendPend          int               `json:"send_pend"`
+	SendCnt           int               `json:"send_cnt"`
+	RecvCnt           int               `json:"recv_cnt"`
+	RecvOctDetails    Rate              `json:"recv_oct_details"`
+	RecvOct           int               `json:"recv_oct"`
+	SendOctDetails    Rate              `json:"send_oct_details"`
+	SendOct           int               `json:"send_oct"`
+	ReductionsDetails Rate              `json:"reductions_details"`
+}
+
+type ConnectionDetails struct {
+	Name     string `json:"name"`
+	PeerPort int    `json:"peer_port"`
+	PeerHost string `json:"peer_host"`
+}
+
+type Channel struct {
+	Vhost                  string            `json:"vhost"`
+	User                   string            `json:"user"`
+	Number                 int               `json:"number"`
+	Name                   string            `json:"name"`
+	Node                   string            `json:"node"`
+	GarbageCollection      GarbageCollection `json:"garbage_collection"`
+	Reductions             int               `json:"reductions"`
+	State                  string            `json:"state"`
+	GlobalPrefetchCount    int               `json:"global_prefetch_count"`
+	PrefetchCount          int               `json:"prefetch_count"`
+	AcksUncommitted        int               `json:"acks_uncommitted"`
+	MessagesUncommitted    int               `json:"messages_uncommitted"`
+	MessagesUnconfirmed    int               `json:"messages_unconfirmed"`
+	MessagesUnacknowledged int               `json:"messages_unacknowledged"`
+	ConsumerCount          int               `json:"consumer_count"`
+	Confirm                bool              `json:"confirm"`
+	Transactional          bool              `json:"transactional"`
+	IdleSince              string            `json:"idle_since"`
+	ReductionsDetails      Rate              `json:"reductions_details"`
+	ConnectionDetails      ConnectionDetails `json:"connection_details"`
+}

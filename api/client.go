@@ -75,6 +75,52 @@ func (c Client) GetOverview() (Overview, error) {
 	return o, err
 }
 
+func (c Client) GetExtensions() ([]map[string]interface{}, error) {
+	r := c.get("extensions")
+	var m []map[string]interface{}
+	err := processResponse(r, &m)
+	return m, err
+}
+
+func (c Client) GetConnections() ([]Connection, error) {
+	r := c.get("connections")
+	var conn []Connection
+	err := processResponse(r, &conn)
+	return conn, err
+
+}
+
+func (c Client) GetConnectionsOnVhost(vhost string) ([]Connection, error) {
+	vhostStr := escapeVhost(vhost)
+	r := c.get(fmt.Sprintf("vhosts/%s/connections", vhostStr))
+	var conn []Connection
+	err := processResponse(r, &conn)
+	return conn, err
+}
+
+func (c Client) GetChannels() ([]Channel, error) {
+	r := c.get("channels")
+	var channels []Channel
+	err := processResponse(r, &channels)
+	return channels, err
+}
+
+func (c Client) GetChannelsOnVhost(vhost string) ([]Channel, error) {
+	vhostStr := escapeVhost(vhost)
+	r := c.get(fmt.Sprintf("vhosts/%s/channels", vhostStr))
+	var channels []Channel
+	err := processResponse(r, &channels)
+	return channels, err
+}
+
+func (c Client) GetChannelsOnConnection(connection string) ([]Channel, error) {
+	connStr := url.QueryEscape(connection)
+	r := c.get(fmt.Sprintf("connections/%s/channels", connStr))
+	var channels []Channel
+	err := processResponse(r, &channels)
+	return channels, err
+}
+
 func (c Client) GetClusterName() (string, error) {
 	r := c.get("cluster-name")
 	type result struct {

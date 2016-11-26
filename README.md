@@ -18,16 +18,17 @@ This is just a small side-project for me (and my first real foray into the world
 |/api/cluster-name | ~~GET~~, PUT |
 |~~/api/node~~ | ~~GET~~
 |~~/api/nodes/name~~ | ~~GET~~
-|/api/extensions | GET
+|~~/api/extensions~~ | ~~GET~~
 |/api/definitions | GET, POST
 |/api/definitions/vhost | GET, POST
-|/api/connections | GET
-|/api/vhosts/vhost/connections | GET
+|~~/api/connections~~ | ~~GET~~
+|~~/api/vhosts/vhost/connections~~ | ~~GET~~
 |/api/connections/name | GET, DELETE
-|/api/connections/name/channels | GET
-|/api/channels | GET
-|/api/vhosts/vhost/channels | GET
+|~~/api/connections/name/channels~~ | ~~GET~~
+|~~/api/channels~~ | ~~GET~~
+|~~/api/vhosts/vhost/channels~~ | ~~GET~~
 |/api/channels/channel | GET
+
 |/api/consumers | GET
 |/api/consumers/vhost | GET
 |~~/api/exchanges~~ | ~~GET~~
