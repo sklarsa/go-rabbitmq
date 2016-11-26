@@ -17,6 +17,9 @@ To run unit tests, please run the following commands:
 1. `export AMQP_URL=amqp://guest:guest@127.0.0.1:5672/ GOMAXPROCS=2`
 2. `make all`
 
+## Todos
+1. Figure out which version of RabbitMQ is running on Travis, and how to make the api version-agnostic (or create separate branches for different rabbitmq versions)
+
 ## API Methods Implemented:
 | Endpoint        | Methods           |
 | --------------  |:-----------------:|
