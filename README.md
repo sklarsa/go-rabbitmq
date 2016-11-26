@@ -33,7 +33,6 @@ To run unit tests, please run the following commands:
 |~~/api/channels~~ | ~~GET~~
 |~~/api/vhosts/vhost/channels~~ | ~~GET~~
 |/api/channels/channel | GET
-
 |/api/consumers | GET
 |/api/consumers/vhost | GET
 |~~/api/exchanges~~ | ~~GET~~
