@@ -15,11 +15,14 @@ var (
 )
 
 func TestMain(m *testing.M) {
-	// Set up a test rabbitmq connection
+	os.Exit(RunTests(m))
+
+}
+
+func RunTests(m *testing.M) int {
 
 	log.Println("Creating test exchange and queue...")
 	conn, _ := amqp.Dial(os.Getenv("AMQP_URL"))
-	defer conn.Close()
 
 	channel, _ := conn.Channel()
 	channel.ExchangeDeclare("test_exchange", "topic", true, false, false, false, amqp.Table{})
@@ -27,7 +30,10 @@ func TestMain(m *testing.M) {
 	channel.QueueBind("test_queue", "#", "test_exchange", false, amqp.Table{})
 
 	log.Println("Exchange and queue created.  Running unit tests...")
-	os.Exit(m.Run())
+
+	defer conn.Close()
+	return m.Run()
+
 }
 
 func TestClient(t *testing.T) {
