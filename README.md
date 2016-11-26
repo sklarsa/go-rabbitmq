@@ -13,8 +13,9 @@ This is just a small side-project for me (and my first real foray into the world
 
 ## Testing
 To run unit tests, please run the following commands:
-`export AMQP_URL=amqp://guest:guest@127.0.0.1:5672/ GOMAXPROCS=2`
-`make all`
+
+1. `export AMQP_URL=amqp://guest:guest@127.0.0.1:5672/ GOMAXPROCS=2`
+2. `make all`
 
 ## API Methods Implemented:
 | Endpoint        | Methods           |
