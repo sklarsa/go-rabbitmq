@@ -6,7 +6,7 @@ go:
   - master
 
 before_install:
-  - sudo apt-get install rabbitmq=3.6.6
+  - sudo apt-get install rabbitmq-server=3.6.6
 
 install:
   - sudo rabbitmq-plugins enable rabbitmq_management
