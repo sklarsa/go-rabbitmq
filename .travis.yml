@@ -1,12 +1,17 @@
 language: go
 sudo: required
+dist: trusty
 
 go:
   - 1.7.1
   - master
 
 before_install:
-  - sudo apt-get install rabbitmq-server=3.6.6
+  - wget https://www.rabbitmq.com/releases/rabbitmq-server/v3.6.6/rabbitmq-server_3.6.6-1_all.deb
+  - sudo apt-get update
+  - sudo apt-get remove rabbitmq-server
+  - sudo dpkg -i rabbitmq-server_3.6.6-1_all.deb
+  - sudo service rabbitmq-server start
 
 install:
   - sudo rabbitmq-plugins enable rabbitmq_management
