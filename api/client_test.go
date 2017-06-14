@@ -197,4 +197,36 @@ func TestClient(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+
+	user, err := c.GetWhoAmI()
+	if reflect.DeepEqual(user, User{}) {
+		t.Error("Results from api/whoami is nil")
+	}
+	if err != nil {
+		t.Error(err)
+	}
+
+	queues, err := c.GetQueues()
+	if len(queues) == 0 {
+		t.Error("Result from api/queues has no values")
+	}
+	if err != nil {
+		t.Error(err)
+	}
+
+	queues, err = c.GetQueuesForVhost("/")
+	if len(queues) == 0 {
+		t.Error("Result from api/queues/vhost has no values")
+	}
+	if err != nil {
+		t.Error(err)
+	}
+
+	queue, err := c.GetQueue("/", "test_queue")
+	if reflect.DeepEqual(queue, Queue{}) {
+		t.Error("Result from api/queues/vhost/name is nil")
+	}
+	if err != nil {
+		t.Error(err)
+	}
 }

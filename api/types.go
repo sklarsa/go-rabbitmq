@@ -73,6 +73,33 @@ type MessageStats struct {
 	Return       int `json:"return"`
 }
 
+type FullMessageStats struct {
+	Deliver                 int  `json:"deliver"`
+	DeliverDetails          Rate `json:"deliver_details"`
+	DeliverNoAck            int  `json:"deliver_no_ack"`
+	DeliverNoAckDetails     Rate `json:"deliver_no_ack_details"`
+	Get                     int  `json:"get"`
+	GetDetails              Rate `json:"get_details"`
+	GetNoAck                int  `json:"get_no_ack"`
+	GetNoAckDetails         Rate `json:"get_no_ack_details"`
+	Publish                 int  `json:"publish"`
+	PublishDetails          Rate `json:"publish_details"`
+	PublishIn               int  `json:"publish_in"`
+	PublishInDetails        Rate `json:"publish_in_details"`
+	PublishOut              int  `json:"publish_out"`
+	PublishOutDetails       Rate `json:"publish_out_details"`
+	Ack                     int  `json:"ack"`
+	AckDetails              Rate `json:"ack_details"`
+	DeliverGet              int  `json:"deliver_get"`
+	DeliverGetDetails       Rate `json:"deliver_get_details"`
+	Confirm                 int  `json:"confirm"`
+	ConfirmDetails          Rate `json:"confirm_details"`
+	ReturnUnroutable        int  `json:"return_unroutable"`
+	ReturnUnroutableDetails Rate `json:"return_unroutable_details"`
+	Redeliver               int  `json:"redeliver"`
+	RedeliverDetails        Rate `json:"redeliver_details"`
+}
+
 type GenericObject struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
@@ -301,4 +328,74 @@ type Channel struct {
 	IdleSince              string            `json:"idle_since"`
 	ReductionsDetails      Rate              `json:"reductions_details"`
 	ConnectionDetails      ConnectionDetails `json:"connection_details"`
+}
+
+type BackingQueueStatus struct {
+	Mode              string        `json:"mode"`
+	Q1                int           `json:"q1"`
+	Q2                int           `json:"q2"`
+	Delta             []interface{} `json:"delta"`
+	Q3                int           `json:"q3"`
+	Q4                int           `json:"q4"`
+	Len               int           `json:"len"`
+	TargetRAMCount    string        `json:"target_ram_count"`
+	NextSeqID         int           `json:"next_seq_id"`
+	AvgIngressRate    float64       `json:"avg_ingress_rate"`
+	AvgEgressRate     float64       `json:"avg_egress_rate"`
+	AvgAckIngressRate float64       `json:"avg_ack_ingress_rate"`
+	AvgAckEgressRate  float64       `json:"avg_ack_egress_rate"`
+}
+
+type Queue struct {
+	Name       string `json:"name"`
+	Vhost      string `json:"vhost"`
+	Durable    bool   `json:"durable"`
+	AutoDelete bool   `json:"auto_delete"`
+	Exclusive  bool   `json:"exclusive"`
+	Arguments  struct {
+	} `json:"arguments"`
+	Node                          string             `json:"node"`
+	ConsumerDetails               []interface{}      `json:"consumer_details"`
+	Deliveries                    []interface{}      `json:"deliveries"`
+	Incoming                      []interface{}      `json:"incoming"`
+	BackingQueueStatus            BackingQueueStatus `json:"backing_queue_status"`
+	DiskWrites                    int                `json:"disk_writes"`
+	DiskReads                     int                `json:"disk_reads"`
+	HeadMessageTimestamp          interface{}        `json:"head_message_timestamp"`
+	MessageBytesPersistent        int                `json:"message_bytes_persistent"`
+	MessageBytesRAM               int                `json:"message_bytes_ram"`
+	MessageBytesUnacknowledged    int                `json:"message_bytes_unacknowledged"`
+	MessageBytesReady             int                `json:"message_bytes_ready"`
+	MessageBytes                  int                `json:"message_bytes"`
+	MessagesPersistent            int                `json:"messages_persistent"`
+	MessagesUnacknowledgedRAM     int                `json:"messages_unacknowledged_ram"`
+	MessagesReadyRAM              int                `json:"messages_ready_ram"`
+	MessagesRAM                   int                `json:"messages_ram"`
+	GarbageCollection             GarbageCollection  `json:"garbage_collection"`
+	State                         string             `json:"state"`
+	RecoverableSlaves             interface{}        `json:"recoverable_slaves"`
+	Consumers                     int                `json:"consumers"`
+	ExclusiveConsumerTag          interface{}        `json:"exclusive_consumer_tag"`
+	Policy                        interface{}        `json:"policy"`
+	ConsumerUtilisation           interface{}        `json:"consumer_utilisation"`
+	IdleSince                     string             `json:"idle_since"`
+	MessagesUnacknowledgedDetails Rate               `json:"messages_unacknowledged_details"`
+	MessagesUnacknowledged        int                `json:"messages_unacknowledged"`
+	MessagesReadyDetails          Rate               `json:"messages_ready_details"`
+	MessagesReady                 int                `json:"messages_ready"`
+	MessagesDetails               Rate               `json:"messages_details"`
+	Messages                      int                `json:"messages"`
+	ReductionsDetails             Rate               `json:"reductions_details"`
+	Reductions                    int                `json:"reductions"`
+	Memory                        int                `json:"memory"`
+}
+type Definitions struct {
+	Users       []User        `json:"user"`
+	Vhosts      []Vhost       `json:"vhosts"`
+	Permissions []Permission  `json:"permissions"`
+	Parameters  []interface{} `json:"parameters"`
+	Policies    []interface{} `json:"policies"`
+	Queues      []Queue       `json:"queues"`
+	Exchanges   []Exchange    `json:"exchanges"`
+	Bindings    []Binding     `json:"bindings"`
 }

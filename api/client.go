@@ -223,3 +223,34 @@ func (c Client) GetHealthchecksForNode(node string) (Status, error) {
 	err := processResponse(r, &s)
 	return s, err
 }
+
+func (c Client) GetWhoAmI() (User, error) {
+	r := c.get("whoami")
+	u := User{}
+	err := processResponse(r, &u)
+	return u, err
+}
+
+func (c Client) GetQueues() ([]Queue, error) {
+	r := c.get("queues")
+	var q []Queue
+	err := processResponse(r, &q)
+	return q, err
+}
+
+func (c Client) GetQueuesForVhost(vhost string) ([]Queue, error) {
+	vhostStr := escapeVhost(vhost)
+	r := c.get(fmt.Sprintf("queues/%s/", vhostStr))
+	var q []Queue
+	err := processResponse(r, &q)
+	return q, err
+}
+
+func (c Client) GetQueue(vhost string, queue string) (Queue, error) {
+	vhostStr := escapeVhost(vhost)
+	queueStr := url.QueryEscape(queue)
+	r := c.get(fmt.Sprintf("queues/%s/%s", vhostStr, queueStr))
+	q := Queue{}
+	err := processResponse(r, &q)
+	return q, err
+}

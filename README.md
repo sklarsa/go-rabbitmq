@@ -17,6 +17,10 @@ To run unit tests, please run the following commands:
 1. `export AMQP_URL=amqp://guest:guest@127.0.0.1:5672/ GOMAXPROCS=2`
 2. `make all`
 
+## Todos
+1. Finish writing methods for all API endpoints
+2. Fill in remaining `interface{}` properties with strongly typed objects
+
 ## API Methods Implemented:
 | Endpoint        | Methods           |
 | --------------  |:-----------------:|
@@ -42,9 +46,9 @@ To run unit tests, please run the following commands:
 |/api/exchanges/vhost/name/bindings/source | GET
 |/api/exchanges/vhost/name/bindings/destination | GET
 |/api/exchanges/vhost/name/publish | POST
-|/api/queues | GET
-|/api/queues/vhost | GET
-|/api/queues/vhost/name | GET, PUT, DELETE
+|~~/api/queues~~ | ~~GET~~
+|~~/api/queues/vhost~~ | ~~GET~~
+|~~/api/queues/vhost/name~~ | ~~GET~~, PUT, DELETE
 |/api/queues/vhost/name/bindings | GET
 |/api/queues/vhost/name/contents | DELETE
 |/api/queues/vhost/name/actions | POST
@@ -61,7 +65,7 @@ To run unit tests, please run the following commands:
 |~~/api/users~~ | ~~GET~~
 |/api/users/name | GET, PUT, DELETE
 |/api/users/user/permissions | GET
-|/api/whoami | GET
+|~~/api/whoami~~ | ~~GET~~
 |~~/api/permissions~~ | ~~GET~~
 |/api/permissions/vhost/user | GET, PUT, DELETE
 |/api/parameters | GET
