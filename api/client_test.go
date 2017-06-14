@@ -68,8 +68,9 @@ func TestClient(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+	nodeName := nodes[0].Name
 
-	node, err := c.GetNode("rabbit@localhost")
+	node, err := c.GetNode(nodeName)
 	if reflect.DeepEqual(node, Node{}) {
 		t.Errorf("Result from api/node/rabbit@localhost is nil")
 	}
@@ -189,7 +190,7 @@ func TestClient(t *testing.T) {
 		t.Error(err)
 	}
 
-	status, err = c.GetHealthchecksForNode("rabbit@localhost")
+	status, err = c.GetHealthchecksForNode(nodeName)
 	if reflect.DeepEqual(status, Status{}) {
 		t.Error("Result from api/healthchecks/node/node is nil")
 	}
