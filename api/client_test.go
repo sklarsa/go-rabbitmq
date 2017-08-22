@@ -4,7 +4,6 @@ import (
 	"github.com/streadway/amqp"
 	"log"
 	"os"
-	"reflect"
 	"testing"
 )
 
@@ -46,7 +45,7 @@ func TestClient(t *testing.T) {
 
 	c := Client{MgmtURL: mgmtURL, Username: username, Password: password}
 	overview, err := c.GetOverview()
-	if reflect.DeepEqual(overview, Overview{}) {
+	if overview == nil {
 		t.Errorf("Result from api/overview is nil")
 	}
 	if err != nil {
@@ -71,7 +70,7 @@ func TestClient(t *testing.T) {
 	nodeName := nodes[0].Name
 
 	node, err := c.GetNode(nodeName)
-	if reflect.DeepEqual(node, Node{}) {
+	if node == nil {
 		t.Errorf("Result from api/node/rabbit@localhost is nil")
 	}
 	if err != nil {
@@ -175,7 +174,7 @@ func TestClient(t *testing.T) {
 	}
 
 	status, err := c.GetAlivenessTestForVhost("/")
-	if reflect.DeepEqual(status, Status{}) {
+	if status == nil {
 		t.Error("Result from api/aliveness-test/vhost is nil")
 	}
 	if err != nil {
@@ -183,7 +182,7 @@ func TestClient(t *testing.T) {
 	}
 
 	status, err = c.GetHealthcheckForCurrentNode()
-	if reflect.DeepEqual(status, Status{}) {
+	if status == nil {
 		t.Error("Result from api/healthchecks/node is nil")
 	}
 	if err != nil {
@@ -191,7 +190,7 @@ func TestClient(t *testing.T) {
 	}
 
 	status, err = c.GetHealthchecksForNode(nodeName)
-	if reflect.DeepEqual(status, Status{}) {
+	if status == nil {
 		t.Error("Result from api/healthchecks/node/node is nil")
 	}
 	if err != nil {
@@ -199,7 +198,7 @@ func TestClient(t *testing.T) {
 	}
 
 	user, err := c.GetWhoAmI()
-	if reflect.DeepEqual(user, User{}) {
+	if user == nil {
 		t.Error("Results from api/whoami is nil")
 	}
 	if err != nil {
@@ -223,7 +222,7 @@ func TestClient(t *testing.T) {
 	}
 
 	queue, err := c.GetQueue("/", "test_queue")
-	if reflect.DeepEqual(queue, Queue{}) {
+	if queue == nil {
 		t.Error("Result from api/queues/vhost/name is nil")
 	}
 	if err != nil {
