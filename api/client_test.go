@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	mgmtUrl  = "localhost:15672/"
+	mgmtURL  = "localhost:15672/"
 	username = "guest"
 	password = "guest"
 )
@@ -44,7 +44,7 @@ func RunTests(m *testing.M) int {
 
 func TestClient(t *testing.T) {
 
-	c := Client{MgmtUrl: mgmtUrl, Username: username, Password: password}
+	c := Client{MgmtURL: mgmtURL, Username: username, Password: password}
 	overview, err := c.GetOverview()
 	if reflect.DeepEqual(overview, Overview{}) {
 		t.Errorf("Result from api/overview is nil")
