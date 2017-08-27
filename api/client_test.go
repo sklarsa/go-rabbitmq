@@ -21,7 +21,11 @@ func TestMain(m *testing.M) {
 func RunTests(m *testing.M) int {
 
 	log.Println("Creating test exchange and queue...")
-	conn, err := amqp.Dial(os.Getenv("AMQP_URL"))
+	url := os.Getenv("AMQP_URL")
+	if url == "" {
+		panic("AMQP_URL environment variable is empty")
+	}
+	conn, err := amqp.Dial(url)
 	if err != nil {
 		panic(err)
 	}
